@@ -117,7 +117,7 @@ class HookHelper : IXposedHookLoadPackage {
 
 
 
-hook权限核心代码：
+hook权限核心代码：【后续，可以根据自己需要检查的代码，做相应的hook行为】
 
 ```kotlin
 /**
