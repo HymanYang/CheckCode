@@ -92,22 +92,22 @@ class HookHelper : IXposedHookLoadPackage {
 
 在资源文件夹下新建 `xposed_init` 文件（注意:名字不能变），将hookhelper类全路径写入此文件
 
-![xxx](xpose_init.pn)
+![xxx](xpose_init.png)
 
 
 待监控方法，[请您依据工信部信管函〔2020〕164号](http://www.gov.cn/zhengce/zhengceku/2020-08/02/content_5531975.htm)
 
-| 方法名字               | 所属包名                           | 作用                                 |
-| ---------------------- | ---------------------------------- | ------------------------------------ |
-| getDeviceId            | android.telephony.TelephonyManager | 获取设备号                           |
-| getImei                | android.telephony.TelephonyManager | 安卓8增加的获取IMEI的方法            |
-| getImei(int)           | android.telephony.TelephonyManager | getImei的带参版本                    |
-| getSubscriberId        | android.telephony.TelephonyManager | 获取IMSI                             |
-| getMacAddress          | android.net.wifi.WifiInfo          | 获取MAC地址                          |
-| getHardwareAddress     | java.net.NetworkInterface          | 获取MAC地址                          |
-| getString              | android.provider.Settings.Secure   | 获取系统相关信息字符来拼接deviceId   |
-| getLastKnownLocation   | LocationManager                    | 获取GPS定位信息                      |
-| requestLocationUpdates | LocationManager                    | 位置、时间发生改变的时候获取定位信息 |
+| 方法名字               | 所属包名                             | 作用                                   |
+| ---------------------- | ------------------------------------ | -------------------------------------- |
+| getDeviceId            | android.telephony.TelephonyManager   | 获取设备号                             |
+| getImei                | android.telephony.TelephonyManager   | 安卓8增加的获取IMEI的方法              |
+| getImei(int)           | android.telephony.TelephonyManager   | getImei的带参版本                      |
+| getSubscriberId        | android.telephony.TelephonyManager   | 获取IMSI                               |
+| getMacAddress          | android.net.wifi.WifiInfo            | 获取MAC地址                            |
+| getHardwareAddress     | java.net.NetworkInterface            | 获取MAC地址                            |
+| ~~getString~~          | ~~android.provider.Settings.Secure~~ | ~~获取系统相关信息字符来拼接deviceId~~ |
+| getLastKnownLocation   | LocationManager                      | 获取GPS定位信息                        |
+| requestLocationUpdates | LocationManager                      | 位置、时间发生改变的时候获取定位信息   |
 
 >webview也会监听到getString ，待确定
 >
