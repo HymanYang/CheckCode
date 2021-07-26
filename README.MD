@@ -92,7 +92,7 @@ class HookHelper : IXposedHookLoadPackage {
 
 在资源文件夹下新建 `xposed_init` 文件（注意:名字不能变），将hookhelper类全路径写入此文件
 
-<img  src="xpose_init.png" align='left'/>
+<img  src="xpose_init.png" align='left'/> <br/>
 
 
 
