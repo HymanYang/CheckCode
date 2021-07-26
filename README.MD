@@ -38,6 +38,7 @@ Xposed框架是一款可以在不修改APK的情况下影响程序运行(修改�
 | [VirtualXposed](https://github.com/android-hacker/VirtualXposed) |      否      | 以安装虚拟机的方式安装Xposed框架，真机本身不需要root         |
 
 >模拟器（MUMU,雷电）可以简单root权限，使用方便，完美对接Xpose
+>[修复后的Xpose-app](https://static.yunjiglobal.com/qnUpload/app/XposedInstaller_3.1.5-debug[修复http请求].apk)
 
 
 
