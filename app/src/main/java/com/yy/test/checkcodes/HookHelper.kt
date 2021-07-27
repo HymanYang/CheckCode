@@ -20,7 +20,7 @@ import java.net.NetworkInterface
 class HookHelper : IXposedHookLoadPackage {
 
     companion object {
-        val WHITE_PACKAGE_NAMES = mutableListOf("com.imaginer.yunji")
+        val WHITE_PACKAGE_NAMES = mutableListOf("com.imaginer.yunji", "com.dev.test.mvvmdemo")
     }
 
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam?) {
@@ -35,148 +35,185 @@ class HookHelper : IXposedHookLoadPackage {
 
 
             //固定格式
-            XposedHelpers.findAndHookMethod(
-                TelephonyManager::class.java.name,  // 需要hook的方法所在类的完整类名
-                lpparam.classLoader,  // 类加载器，固定这么写就行了
-                "getDeviceId",  // 需要hook的方法名
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getDeviceId()获取了imei")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    TelephonyManager::class.java.name,  // 需要hook的方法所在类的完整类名
+                    lpparam.classLoader,  // 类加载器，固定这么写就行了
+                    "getDeviceId",  // 需要hook的方法名
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getDeviceId()获取了imei")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
 
-            XposedHelpers.findAndHookMethod(
-                TelephonyManager::class.java.name,
-                lpparam.classLoader,
-                "getDeviceId",
-                Int::class.javaPrimitiveType,
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getDeviceId(int)获取了imei")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    TelephonyManager::class.java.name,
+                    lpparam.classLoader,
+                    "getDeviceId",
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getDeviceId(int)获取了imei")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
-            XposedHelpers.findAndHookMethod(
-                TelephonyManager::class.java.name,
-                lpparam.classLoader,
-                "getSubscriberId",
-                Int::class.javaPrimitiveType,
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getSubscriberId获取了imsi")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    TelephonyManager::class.java.name,
+                    lpparam.classLoader,
+                    "getSubscriberId",
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getSubscriberId获取了imsi")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
-            XposedHelpers.findAndHookMethod(
-                TelephonyManager::class.java.name,
-                lpparam.classLoader,
-                "getImei",
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getImei获取了imei")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    TelephonyManager::class.java.name,
+                    lpparam.classLoader,
+                    "getImei",
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getImei获取了imei")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
-            XposedHelpers.findAndHookMethod(
-                TelephonyManager::class.java.name,
-                lpparam.classLoader,
-                "getImei",
-                Int::class.javaPrimitiveType,
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getImei(int)获取了imei")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    TelephonyManager::class.java.name,
+                    lpparam.classLoader,
+                    "getImei",
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getImei(int)获取了imei")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
-            XposedHelpers.findAndHookMethod(
-                WifiInfo::class.java.name,
-                lpparam.classLoader,
-                "getMacAddress",
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getMacAddress()获取了mac地址")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    WifiInfo::class.java.name,
+                    lpparam.classLoader,
+                    "getMacAddress",
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getMacAddress()获取了mac地址")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
 
-            XposedHelpers.findAndHookMethod(
-                WifiInfo::class.java.name,
-                lpparam.classLoader,
-                "getIpAddress",
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getIpAddress()获取了mac地址")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    WifiInfo::class.java.name,
+                    lpparam.classLoader,
+                    "getIpAddress",
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getIpAddress()获取了mac地址")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
-            XposedHelpers.findAndHookMethod(
-                NetworkInterface::class.java.name,
-                lpparam.classLoader,
-                "getHardwareAddress",
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getHardwareAddress()获取了mac地址")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    NetworkInterface::class.java.name,
+                    lpparam.classLoader,
+                    "getHardwareAddress",
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getHardwareAddress()获取了mac地址")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
-            XposedHelpers.findAndHookMethod(
-                Secure::class.java.name,
-                lpparam.classLoader,
-                "getString",
-                ContentResolver::class.java,
-                String::class.java,
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam) {
-                        XposedBridge.log(lpparam.packageName + "调用Settings.Secure.getstring获取了" + param.args[1])
+            try {
+                XposedHelpers.findAndHookMethod(
+                    Secure::class.java.name,
+                    lpparam.classLoader,
+                    "getString",
+                    ContentResolver::class.java,
+                    String::class.java,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam) {
+                            XposedBridge.log(lpparam.packageName + "调用Settings.Secure.getstring获取了" + param.args[1])
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
-            XposedHelpers.findAndHookMethod(
-                LocationManager::class.java.name,
-                lpparam.classLoader,
-                "getLastKnownLocation",
-                String::class.java,
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用getLastKnownLocation获取了GPS地址")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    LocationManager::class.java.name,
+                    lpparam.classLoader,
+                    "getLastKnownLocation",
+                    String::class.java,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getLastKnownLocation获取了GPS地址")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
-            XposedHelpers.findAndHookMethod(
-                LocationManager::class.java.name,
-                lpparam.classLoader,
-                "requestLocationUpdates",
-                String::class.java,
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用requestLocationUpdates获取了GPS地址")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    LocationManager::class.java.name,
+                    lpparam.classLoader,
+                    "requestLocationUpdates",
+                    String::class.java,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用requestLocationUpdates获取了GPS地址")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
 
 
-            XposedHelpers.findAndHookMethod(
-                "android.app.ApplicationPackageManager",
-                lpparam.classLoader,
-                "getInstalledPackages",
-                Int::class.javaPrimitiveType,
-                object : DumpMethodHook() {
-                    override fun beforeHookedMethod(param: MethodHookParam?) {
-                        XposedBridge.log(lpparam.packageName + "调用手机安装应用列表获取了imei")
+            try {
+                XposedHelpers.findAndHookMethod(
+                    "android.app.ApplicationPackageManager",
+                    lpparam.classLoader,
+                    "getInstalledPackages",
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getInstalledPackages获取安装应用列表")
+                        }
                     }
-                }
-            )
+                )
+            } catch (e: Exception) {
+            }
+
 
         }
 
