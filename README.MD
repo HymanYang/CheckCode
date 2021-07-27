@@ -105,11 +105,13 @@ class HookHelper : IXposedHookLoadPackage {
 | getImei                | android.telephony.TelephonyManager   | 安卓8增加的获取IMEI的方法              |
 | getImei(int)           | android.telephony.TelephonyManager   | getImei的带参版本                      |
 | getSubscriberId        | android.telephony.TelephonyManager   | 获取IMSI                               |
+| getIpAddress           | android.net.wifi.WifiInfo            | 获取IP地址                            |
 | getMacAddress          | android.net.wifi.WifiInfo            | 获取MAC地址                            |
 | getHardwareAddress     | java.net.NetworkInterface            | 获取MAC地址                            |
 | ~~getString~~          | ~~android.provider.Settings.Secure~~ | ~~获取系统相关信息字符来拼接deviceId~~ |
 | getLastKnownLocation   | LocationManager                      | 获取GPS定位信息                        |
 | requestLocationUpdates | LocationManager                      | 位置、时间发生改变的时候获取定位信息   |
+| getInstalledPackages   | android.app.ApplicationPackageManager| 获取手机应用列表  |
 
 >webview也会监听到getString ，待确定
 >

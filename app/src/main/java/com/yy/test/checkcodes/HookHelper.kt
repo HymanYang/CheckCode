@@ -105,6 +105,18 @@ class HookHelper : IXposedHookLoadPackage {
                 }
             )
 
+
+            XposedHelpers.findAndHookMethod(
+                WifiInfo::class.java.name,
+                lpparam.classLoader,
+                "getIpAddress",
+                object : DumpMethodHook() {
+                    override fun beforeHookedMethod(param: MethodHookParam?) {
+                        XposedBridge.log(lpparam.packageName + "调用getIpAddress()获取了mac地址")
+                    }
+                }
+            )
+
             XposedHelpers.findAndHookMethod(
                 NetworkInterface::class.java.name,
                 lpparam.classLoader,
@@ -153,6 +165,18 @@ class HookHelper : IXposedHookLoadPackage {
                 }
             )
 
+
+            XposedHelpers.findAndHookMethod(
+                "android.app.ApplicationPackageManager",
+                lpparam.classLoader,
+                "getInstalledPackages",
+                Int::class.javaPrimitiveType,
+                object : DumpMethodHook() {
+                    override fun beforeHookedMethod(param: MethodHookParam?) {
+                        XposedBridge.log(lpparam.packageName + "调用手机安装应用列表获取了imei")
+                    }
+                }
+            )
 
         }
 
