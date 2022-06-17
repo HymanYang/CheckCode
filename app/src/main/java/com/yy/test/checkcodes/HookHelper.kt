@@ -214,6 +214,50 @@ class HookHelper : IXposedHookLoadPackage {
             } catch (e: Exception) {
             }
 
+            try {
+                XposedHelpers.findAndHookMethod(
+                    "android.app.ApplicationPackageManager",
+                    lpparam.classLoader,
+                    "getInstalledPackagesAsUser",
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getInstalledPackagesAsUser获取安装应用列表")
+                        }
+                    }
+                )
+            } catch (e: Exception) {
+            }
+
+            try {
+                XposedHelpers.findAndHookMethod(
+                    "android.app.ApplicationPackageManager",
+                    lpparam.classLoader,
+                    "getInstalledApplications",
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getInstalledApplications获取安装应用列表")
+                        }
+                    }
+                )
+            } catch (e: Exception) {
+            }
+
+            try {
+                XposedHelpers.findAndHookMethod(
+                    "android.app.ApplicationPackageManager",
+                    lpparam.classLoader,
+                    "getInstalledApplicationsAsUser",
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用getInstalledApplicationsAsUser获取安装应用列表")
+                        }
+                    }
+                )
+            } catch (e: Exception) {
+            }
 
         }
 
