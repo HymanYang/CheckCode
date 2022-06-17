@@ -220,6 +220,7 @@ class HookHelper : IXposedHookLoadPackage {
                     lpparam.classLoader,
                     "getInstalledPackagesAsUser",
                     Int::class.javaPrimitiveType,
+                    Int::class.javaPrimitiveType,
                     object : DumpMethodHook() {
                         override fun beforeHookedMethod(param: MethodHookParam?) {
                             XposedBridge.log(lpparam.packageName + "调用getInstalledPackagesAsUser获取安装应用列表")
@@ -249,6 +250,7 @@ class HookHelper : IXposedHookLoadPackage {
                     "android.app.ApplicationPackageManager",
                     lpparam.classLoader,
                     "getInstalledApplicationsAsUser",
+                    Int::class.javaPrimitiveType,
                     Int::class.javaPrimitiveType,
                     object : DumpMethodHook() {
                         override fun beforeHookedMethod(param: MethodHookParam?) {
