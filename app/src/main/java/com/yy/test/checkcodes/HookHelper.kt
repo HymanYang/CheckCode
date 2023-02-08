@@ -1,5 +1,6 @@
 package com.yy.test.checkcodes
 
+import android.app.Activity
 import android.content.ContentResolver
 import android.location.LocationManager
 import android.net.wifi.WifiInfo
@@ -20,7 +21,7 @@ import java.net.NetworkInterface
 class HookHelper : IXposedHookLoadPackage {
 
     companion object {
-        val WHITE_PACKAGE_NAMES = mutableListOf("com.imaginer.yunji", "com.dev.test.mvvmdemo")
+        val WHITE_PACKAGE_NAMES = mutableListOf("com.imaginer.yunji","com.fusheng.demo","com.yy.test.checkcodes")
     }
 
     override fun handleLoadPackage(lpparam: XC_LoadPackage.LoadPackageParam?) {
@@ -35,36 +36,100 @@ class HookHelper : IXposedHookLoadPackage {
 
 
             //固定格式
-            try {
-                XposedHelpers.findAndHookMethod(
-                    TelephonyManager::class.java.name,  // 需要hook的方法所在类的完整类名
-                    lpparam.classLoader,  // 类加载器，固定这么写就行了
-                    "getDeviceId",  // 需要hook的方法名
-                    object : DumpMethodHook() {
-                        override fun beforeHookedMethod(param: MethodHookParam?) {
-                            XposedBridge.log(lpparam.packageName + "调用getDeviceId()获取了imei")
-                        }
-                    }
-                )
-            } catch (e: Exception) {
-            }
+//            try {
+//                XposedHelpers.findAndHookMethod(
+//                    TelephonyManager::class.java.name,  // 需要hook的方法所在类的完整类名
+//                    lpparam.classLoader,  // 类加载器，固定这么写就行了
+//                    "getDeviceId",  // 需要hook的方法名
+//                    object : DumpMethodHook() {
+//                        override fun beforeHookedMethod(param: MethodHookParam?) {
+//                            XposedBridge.log(lpparam.packageName + "调用getDeviceId()获取了imei")
+//                        }
+//                    }
+//                )
+//            } catch (e: Exception) {
+//            }
 
 
+//            try {
+//                XposedHelpers.findAndHookMethod(
+//                    "android.app.ApplicationPackageManager",
+//                    lpparam.classLoader,
+//                    "getInstalledPackages",
+//                    Int::class.javaPrimitiveType,
+//                    object : DumpMethodHook() {
+//                        override fun beforeHookedMethod(param: MethodHookParam?) {
+//                            XposedBridge.log(lpparam.packageName + "调用getInstalledPackages获取安装应用列表")
+//                        }
+//                    }
+//                )
+//            } catch (e: Exception) {
+//            }
+
             try {
                 XposedHelpers.findAndHookMethod(
-                    TelephonyManager::class.java.name,
+                    "android.app.Fragment",
                     lpparam.classLoader,
-                    "getDeviceId",
+                    "requestPermissions",
+                    Array<String>::class.java,
                     Int::class.javaPrimitiveType,
                     object : DumpMethodHook() {
                         override fun beforeHookedMethod(param: MethodHookParam?) {
-                            XposedBridge.log(lpparam.packageName + "调用getDeviceId(int)获取了imei")
+                            XposedBridge.log(lpparam.packageName + "调用fragment-requestPermissions获取权限"+param?.args.toString())
                         }
                     }
                 )
             } catch (e: Exception) {
             }
 
+            try {
+                XposedHelpers.findAndHookMethod(
+                    "android.app.Activity",
+                    lpparam.classLoader,
+                    "requestPermissions",
+                    Array<String>::class.java,
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用activity-requestPermissions获取权限"+param?.args.toString())
+                        }
+                    }
+                )
+            } catch (e: Exception) {
+            }
+
+            try {
+                XposedHelpers.findAndHookMethod(
+                    "androidx.core.app.ActivityCompat",
+                    lpparam.classLoader,
+                    "requestPermissions",
+                    Activity::class.javaPrimitiveType,
+                    Array<String>::class.java,
+                    Int::class.javaPrimitiveType,
+                    object : DumpMethodHook() {
+                        override fun beforeHookedMethod(param: MethodHookParam?) {
+                            XposedBridge.log(lpparam.packageName + "调用activity-requestPermissions获取权限")
+                        }
+                    }
+                )
+            } catch (e: Exception) {
+            }
+
+//            try {
+//                XposedHelpers.findAndHookMethod(
+//                    TelephonyManager::class.java.name,
+//                    lpparam.classLoader,
+//                    "getDeviceId",
+//                    Int::class.javaPrimitiveType,
+//                    object : DumpMethodHook() {
+//                        override fun beforeHookedMethod(param: MethodHookParam?) {
+//                            XposedBridge.log(lpparam.packageName + "调用getDeviceId(int)获取了imei")
+//                        }
+//                    }
+//                )
+//            } catch (e: Exception) {
+//            }
+//
             try {
                 XposedHelpers.findAndHookMethod(
                     TelephonyManager::class.java.name,
@@ -203,21 +268,6 @@ class HookHelper : IXposedHookLoadPackage {
                 XposedHelpers.findAndHookMethod(
                     "android.app.ApplicationPackageManager",
                     lpparam.classLoader,
-                    "getInstalledPackages",
-                    Int::class.javaPrimitiveType,
-                    object : DumpMethodHook() {
-                        override fun beforeHookedMethod(param: MethodHookParam?) {
-                            XposedBridge.log(lpparam.packageName + "调用getInstalledPackages获取安装应用列表")
-                        }
-                    }
-                )
-            } catch (e: Exception) {
-            }
-
-            try {
-                XposedHelpers.findAndHookMethod(
-                    "android.app.ApplicationPackageManager",
-                    lpparam.classLoader,
                     "getInstalledPackagesAsUser",
                     Int::class.javaPrimitiveType,
                     Int::class.javaPrimitiveType,
@@ -245,21 +295,21 @@ class HookHelper : IXposedHookLoadPackage {
             } catch (e: Exception) {
             }
 
-            try {
-                XposedHelpers.findAndHookMethod(
-                    "android.app.ApplicationPackageManager",
-                    lpparam.classLoader,
-                    "getInstalledApplicationsAsUser",
-                    Int::class.javaPrimitiveType,
-                    Int::class.javaPrimitiveType,
-                    object : DumpMethodHook() {
-                        override fun beforeHookedMethod(param: MethodHookParam?) {
-                            XposedBridge.log(lpparam.packageName + "调用getInstalledApplicationsAsUser获取安装应用列表")
-                        }
-                    }
-                )
-            } catch (e: Exception) {
-            }
+//            try {
+//                XposedHelpers.findAndHookMethod(
+//                    "android.app.ApplicationPackageManager",
+//                    lpparam.classLoader,
+//                    "getInstalledApplicationsAsUser",
+//                    Int::class.javaPrimitiveType,
+//                    Int::class.javaPrimitiveType,
+//                    object : DumpMethodHook() {
+//                        override fun beforeHookedMethod(param: MethodHookParam?) {
+//                            XposedBridge.log(lpparam.packageName + "调用getInstalledApplicationsAsUser获取安装应用列表")
+//                        }
+//                    }
+//                )
+//            } catch (e: Exception) {
+//            }
 
         }
 
