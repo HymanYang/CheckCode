@@ -21,9 +21,15 @@ Xposed框架是一款可以在不修改APK的情况下影响程序运行(修改�
 xpose 需要Root权限手机
 
 
+## Whale
+Whale内部Xpose思路,快速多手机支持，代码调用排除
+支持Android5.0.0 ~ 9.0.0
+
+
 
 
 ## 参考
 
 https://juejin.cn/post/7146038116321591303/
 
+https://github.com/jyy208/whale

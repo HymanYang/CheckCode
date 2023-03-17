@@ -1,2 +1,3 @@
 rootProject.name = "CheckCodes2"
 include ':app'
+include ':Whale'
