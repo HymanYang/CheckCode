@@ -3,12 +3,13 @@ package com.yy.test.checkcodes
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings.Secure
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 
 const val REQUEST_WRITE_EXTERNAL_STORAGE = 1
 
@@ -28,6 +29,11 @@ class MainActivity : AppCompatActivity() {
 //                Toast.makeText(this,"已申请权限",Toast.LENGTH_SHORT).show()
 //            }
         }
+
+
+        val androidId: String = Secure.getString(this.contentResolver, Secure.ANDROID_ID)
+
+        Log.e("Check_Code","androidID=$androidId")
 
     }
 
