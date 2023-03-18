@@ -23,7 +23,7 @@ xpose 需要Root权限手机
 
 ## Whale
 Whale内部Xpose思路,快速多手机支持，代码调用排除
-支持Android5.0.0 ~ 9.0.0
+支持Android5.0.0 ~ 12.0.0
 
 
 
